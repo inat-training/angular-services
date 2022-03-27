@@ -6,6 +6,7 @@ import { Reader } from "app/models/reader";
 import { LoggerService } from 'app/core/logger.service';
 import { DataService } from 'app/core/data.service';
 import { BookTrackererror } from 'app/models/bookTrackerError';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,6 +36,8 @@ export class DashboardComponent implements OnInit {
     this.mostPopularBook = this.dataService.mostPopularBook;
     this.title.setTitle(`Book Tracker ${VERSION.full}`)
     this.loggerService.log('Done with dashboard initialization');
+
+    // throw new Error('Ugly technical error');
   }
 
   deleteBook(bookID: number): void {
