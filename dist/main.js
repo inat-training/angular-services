@@ -439,9 +439,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DashboardComponent": () => (/* binding */ DashboardComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _raw_loader_dashboard_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dashboard.component.html */ 9306);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
 /* harmony import */ var app_core_logger_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! app/core/logger.service */ 6383);
 /* harmony import */ var app_core_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/core/data.service */ 3943);
 
@@ -449,16 +450,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let DashboardComponent = class DashboardComponent {
-    constructor(loggerService, dataService) {
+    constructor(loggerService, dataService, title) {
         this.loggerService = loggerService;
         this.dataService = dataService;
+        this.title = title;
         this.loggerService.log('Creating the dashboard');
     }
     ngOnInit() {
         this.allBooks = this.dataService.getAllBooks();
         this.dataService.getAllReaders().subscribe((data) => this.allReaders = data, (err) => this.loggerService.log(err.friendlyMessage), () => this.loggerService.log('All done getting reader!'));
         this.mostPopularBook = this.dataService.mostPopularBook;
+        this.title.setTitle(`Book Tracker ${_angular_core__WEBPACK_IMPORTED_MODULE_3__.VERSION.full}`);
         this.loggerService.log('Done with dashboard initialization');
     }
     deleteBook(bookID) {
@@ -470,10 +474,11 @@ let DashboardComponent = class DashboardComponent {
 };
 DashboardComponent.ctorParameters = () => [
     { type: app_core_logger_service__WEBPACK_IMPORTED_MODULE_1__.LoggerService },
-    { type: app_core_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService }
+    { type: app_core_data_service__WEBPACK_IMPORTED_MODULE_2__.DataService },
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__.Title }
 ];
-DashboardComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+DashboardComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
         selector: 'app-dashboard',
         template: _raw_loader_dashboard_component_html__WEBPACK_IMPORTED_MODULE_0__.default
     })
